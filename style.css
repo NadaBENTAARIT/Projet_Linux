@@ -1,0 +1,15 @@
+window{
+    background-color:rgb(199, 102, 102);
+} 
+
+
+button1,button2
+{
+    border-radius: 10px; 
+    background-color: rgb(160, 41, 41);
+} 
+
+button:hover
+{
+    background-color: rgb(216, 202, 202);
+}
