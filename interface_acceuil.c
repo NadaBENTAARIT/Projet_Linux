@@ -50,9 +50,9 @@ int main(int argc, char **argv)
     //box=gtk_box_new(GTK_ORIENTATION_VERTICAL,0);
     fixed = gtk_fixed_new();
     
-    title=gtk_label_new("Bienvenue dans notre application,\n Choisissez le mode de communication !");
-    button1 = gtk_button_new_with_mnemonic("Communication avec Tube nommé");
-    button2 = gtk_button_new_with_label("Communication avec Socket mode TCP");
+    title=gtk_label_new("Bienvenue dans notre application,\n Choisissez le mode de communication pour \n vous générer des nombres");
+    button1 = gtk_button_new_with_mnemonic("Communication avec Tube Nommé");
+    button2 = gtk_button_new_with_label("Communication avec Socket TCP");
 
 
     g_signal_connect_swapped(button1, "clicked",G_CALLBACK(button1_click),window);
@@ -60,15 +60,15 @@ int main(int argc, char **argv)
 
   
 
-    gtk_widget_set_size_request(GTK_WIDGET(button1), 70, 70);
-    gtk_widget_set_size_request(GTK_WIDGET(button2), 70, 70);
+    gtk_widget_set_size_request(GTK_WIDGET(button1), 20, 20);
+    gtk_widget_set_size_request(GTK_WIDGET(button2), 20, 20);
     gtk_container_add(GTK_CONTAINER(window), fixed);
     //gtk_box_pack_start(GTK_BOX(box),button1,TRUE,TRUE,50);
     //gtk_box_pack_start(GTK_BOX(box),button2,TRUE,TRUE,50);
-    gtk_fixed_put(GTK_FIXED(fixed), title, 250, 50);
+    gtk_fixed_put(GTK_FIXED(fixed), title,50, 50);
 
-    gtk_fixed_put(GTK_FIXED(fixed), button1, 250, 50);
-    gtk_fixed_put(GTK_FIXED(fixed), button2, 250, 200);
+    gtk_fixed_put(GTK_FIXED(fixed), button1,60, 80);
+    gtk_fixed_put(GTK_FIXED(fixed), button2,60, 200);
     gtk_window_set_resizable(GTK_WINDOW(window), FALSE);
     gtk_window_set_title(GTK_WINDOW(window), "Acceuil");
     gtk_window_set_default_size(GTK_WINDOW(window), 700, 500);

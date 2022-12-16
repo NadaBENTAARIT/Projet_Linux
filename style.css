@@ -1,27 +1,28 @@
 window{
 
     background-repeat: no-repeat;
-    background-size: cover;
-    background-image: url("image_interface_acceuil.jpeg");
+    background-size: 100%;
+    background-image: url("image.jpg");
 } 
 
 label{
     margin-right: 20px;
-    margin-left:150px ;
+    margin-left:50px ;
 
-    color: red;
+    color: black;
 
 }
 
 button
 {
-    border-radius: 30px;
-    background-color: brown;
-    color: blue;
-margin-right: 40px;
-margin-left:70px ;
+    background: rgb(219, 167, 167);   
+     border-radius: 30px;
+margin-right: 5px;
+margin-left:5px ;
 margin-top: 120px;
-padding-right: 50px;} 
+padding-right: 30px;
+box-shadow: 0px 0px 5px black;
+} 
 
 
 button:hover

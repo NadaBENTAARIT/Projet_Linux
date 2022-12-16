@@ -6,7 +6,7 @@ void load_css(void)
     GdkDisplay *display;
 
     GdkScreen *scrw;
-    //load css
+    // load css
     provider = gtk_css_provider_new();
     display = gdk_display_get_default();
     scrw = gdk_display_get_default_screen(display);
@@ -19,68 +19,63 @@ void load_css(void)
 }
 int main(int argc, char **argv)
 {
-        GtkWidget *title1;
-                GtkWidget *title2;
+    GtkWidget *title1;
+    GtkWidget *title2;
 
+    // Opening file to read response
+    FILE *fPtr;
+    char line[50];
+    char resultat[50] = "";
 
-// Opening file to read response
-  FILE * fPtr;
-  char   line[50];
-    char resultat[50]="";
-
-   int num;
-   FILE *fptr;
+    int num;
+    FILE *fptr;
     fptr = fopen("Tube/data_file.txt", "r");
 
-   if (fptr  == NULL){
-       printf("Error! opening file");
-       exit(1);
-   }
-
-   while(fgets(line,50,fptr)){
-        printf("%s",line);
-            strcat(resultat,line);
-
+    if (fptr == NULL)
+    {
+        printf("Error! opening file");
+        strcat(resultat, "Error !! ");
+        exit(1);
     }
-         
 
+    while (fgets(line, 50, fptr))
+    {
+        printf("%s", line);
+        strcat(resultat, line);
+    }
 
     /* Close file to save file data */
     fclose(fptr);
-
-
-
+    remove("Tube/data.txt");
 
     gtk_init(&argc, &argv);
-    //gtk code comes here
-    //gtk window
-    //with gtk box we can add multiple widgets
+    // gtk code comes here
+    // gtk window
+    // with gtk box we can add multiple widgets
     GtkWidget *window1;
 
     GtkWidget *fixed;
 
+    load_css();
 
-        load_css();
-
-    //load_css();
+    // load_css();
     window1 = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    //box=gtk_box_new(GTK_ORIENTATION_VERTICAL,0);
+    // box=gtk_box_new(GTK_ORIENTATION_VERTICAL,0);
     fixed = gtk_fixed_new();
- 
 
-    //title=gtk_label_new(num);
+    // title=gtk_label_new(num);
 
     gtk_container_add(GTK_CONTAINER(window1), fixed);
-    //gtk_box_pack_start(GTK_BOX(box),button1,TRUE,TRUE,50);
-    //gtk_box_pack_start(GTK_BOX(box),button2,TRUE,TRUE,50);
-        //gtk_fixed_put(GTK_FIXED(fixed), title, 250, 50);
+    // gtk_box_pack_start(GTK_BOX(box),button1,TRUE,TRUE,50);
+    // gtk_box_pack_start(GTK_BOX(box),button2,TRUE,TRUE,50);
+    // gtk_fixed_put(GTK_FIXED(fixed), title, 250, 50);
 
- title1=gtk_label_new("Voici les nombres gérés pour vous par mode tube nommé");
-  title2=gtk_label_new(resultat);
+    title1 = gtk_label_new("Voici les nombres générés pour vous par mode tube nommé");
+    title2 = gtk_label_new(resultat);
 
-        gtk_fixed_put(GTK_FIXED(fixed), title1, 250, 50);
-        gtk_fixed_put(GTK_FIXED(fixed), title2, 370, 120);
 
+    gtk_fixed_put(GTK_FIXED(fixed), title1,10, 50);
+    gtk_fixed_put(GTK_FIXED(fixed), title2, 130, 120);
 
     gtk_window_set_resizable(GTK_WINDOW(window1), FALSE);
     gtk_window_set_title(GTK_WINDOW(window1), "Resultat_Socket");
@@ -89,10 +84,7 @@ int main(int argc, char **argv)
     g_signal_connect(window1, "destroy", G_CALLBACK(gtk_main_quit), NULL);
 
     gtk_widget_show_all(window1);
-    //a loop
+    // a loop
     gtk_main();
     return 0;
 }
-
-
-

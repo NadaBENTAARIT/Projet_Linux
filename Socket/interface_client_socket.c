@@ -50,6 +50,8 @@ int main(int argc, char **argv)
 
     /* Close file to save file data */
     fclose(fptr);
+    remove("Socket/data.txt");
+
 
     gtk_init(&argc, &argv);
     // gtk code comes here
@@ -73,11 +75,11 @@ int main(int argc, char **argv)
     // gtk_box_pack_start(GTK_BOX(box),button2,TRUE,TRUE,50);
     // gtk_fixed_put(GTK_FIXED(fixed), title, 250, 50);
 
-    title1 = gtk_label_new("Voici les nombres gérés pour vous par mode Socket TCP");
+    title1 = gtk_label_new("Voici les nombres générés pour vous par mode Socket TCP");
     title2 = gtk_label_new(resultat);
 
-    gtk_fixed_put(GTK_FIXED(fixed), title1, 250, 50);
-    gtk_fixed_put(GTK_FIXED(fixed), title2, 370, 120);
+    gtk_fixed_put(GTK_FIXED(fixed), title1,10, 50);
+    gtk_fixed_put(GTK_FIXED(fixed), title2,130, 120);
 
     gtk_window_set_resizable(GTK_WINDOW(window1), FALSE);
     gtk_window_set_title(GTK_WINDOW(window1), "Resultat_Socket");

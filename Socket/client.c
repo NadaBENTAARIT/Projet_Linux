@@ -6,7 +6,7 @@
 #include <arpa/inet.h>
 void main()
 {
-
+    int ret;
     int client_sock;
     struct sockaddr_in addr;
     int i; // compteur
@@ -19,15 +19,25 @@ void main()
     if (client_sock < 0)
     {
         printf("unable to create socket");
+        
     }
-    printf("Client socket create succcessfully");
+        printf("Client socket create succcessfully");
 
     // Asking for connexion
     memset(&addr, '\n', sizeof(addr));
     addr.sin_family = AF_INET;
     addr.sin_port = htons(PORT);
     addr.sin_addr.s_addr = inet_addr("127.0.0.1");
-    connect(client_sock, (struct sockaddr *)&addr, sizeof(addr));
+    ret=connect(client_sock,(struct sockaddr *)&addr, sizeof(addr));
+
+
+
+    if (ret< 0)
+	{
+		printf("Error in connection.\n");
+		exit(1);
+	}
+    else{
     printf("\n Connect to server");
 
     // Transfering data
@@ -80,4 +90,5 @@ void main()
 
     // Closing  socket
     close(client_sock);
+    }
 }
