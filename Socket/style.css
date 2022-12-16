@@ -1,4 +1,4 @@
-window{
+window1{
 
     background-repeat: no-repeat;
     background-size: cover;
@@ -16,7 +16,6 @@ label{
 button
 {
     border-radius: 30px;
-    background-color: brown;
     color: blue;
 margin-right: 40px;
 margin-left:70px ;

@@ -25,18 +25,19 @@ int main(int argc, char **argv)
  void button1_click()
 {
    
-    system("/home/nada/Bureau/Projetlinux/Tube/build/run_client_tube.sh");
+    system("/home/nada/Bureau/Projetlinux/Tube/bild/run_client_tube.sh");
 }
     void button2_click()
 {
-    system("/home/nada/Bureau/Projetlinux/Socket/build/run_client_socket.sh");
+    system("/home/nada/Bureau/Projetlinux/Socket/bild/run_client_socket.sh");
 }
 
 
     gtk_init(&argc, &argv);
-    //gtk code comes here
-    //gtk window
-    //with gtk box we can add multiple widgets
+
+//system("gnome-terminal -e 'sh -c\"gcc -o /home/nada/Bureau/Projetlinux/Tube/Serveur && /home/nada/Bureau/Projetlinux/Tube/serveur.c\"'");
+//system("gnome-terminal -e 'sh -c\"gcc -o /home/nada/Bureau/Projetlinux/Socket/Serveur && /home/nada/Bureau/Projetlinux/Socket/serveur.c\"'");
+    
     GtkWidget *window;
     GtkWidget *button1;
     GtkWidget *button2;
@@ -49,9 +50,9 @@ int main(int argc, char **argv)
     //box=gtk_box_new(GTK_ORIENTATION_VERTICAL,0);
     fixed = gtk_fixed_new();
     
-    title=gtk_label_new("Bienvenue dans notre application, Choisissez le mode de communication !");
+    title=gtk_label_new("Bienvenue dans notre application,\n Choisissez le mode de communication !");
     button1 = gtk_button_new_with_mnemonic("Communication avec Tube nommé");
-    button2 = gtk_button_new_with_label("Communication avec Socket");
+    button2 = gtk_button_new_with_label("Communication avec Socket mode TCP");
 
 
     g_signal_connect_swapped(button1, "clicked",G_CALLBACK(button1_click),window);
@@ -60,11 +61,11 @@ int main(int argc, char **argv)
   
 
     gtk_widget_set_size_request(GTK_WIDGET(button1), 70, 70);
-    gtk_widget_set_size_request(GTK_WIDGET(button2), 50, 70);
+    gtk_widget_set_size_request(GTK_WIDGET(button2), 70, 70);
     gtk_container_add(GTK_CONTAINER(window), fixed);
     //gtk_box_pack_start(GTK_BOX(box),button1,TRUE,TRUE,50);
     //gtk_box_pack_start(GTK_BOX(box),button2,TRUE,TRUE,50);
-        gtk_fixed_put(GTK_FIXED(fixed), title, 250, 50);
+    gtk_fixed_put(GTK_FIXED(fixed), title, 250, 50);
 
     gtk_fixed_put(GTK_FIXED(fixed), button1, 250, 50);
     gtk_fixed_put(GTK_FIXED(fixed), button2, 250, 200);
