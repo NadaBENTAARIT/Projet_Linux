@@ -70,15 +70,15 @@ int main(int argc, char **argv)
     // gtk_box_pack_start(GTK_BOX(box),button2,TRUE,TRUE,50);
     // gtk_fixed_put(GTK_FIXED(fixed), title, 250, 50);
 
-    title1 = gtk_label_new("Voici les nombres générés pour vous par mode tube nommé");
+    title1 = gtk_label_new("____Vous etes bien connecté au serveur mode Tube Nommé____");
     title2 = gtk_label_new(resultat);
 
 
-    gtk_fixed_put(GTK_FIXED(fixed), title1,10, 50);
-    gtk_fixed_put(GTK_FIXED(fixed), title2, 130, 120);
+    gtk_fixed_put(GTK_FIXED(fixed), title1,3, 50);
+    gtk_fixed_put(GTK_FIXED(fixed), title2, 20, 120);
 
     gtk_window_set_resizable(GTK_WINDOW(window1), FALSE);
-    gtk_window_set_title(GTK_WINDOW(window1), "Resultat_Socket");
+    gtk_window_set_title(GTK_WINDOW(window1), "Resultat_Tube");
     gtk_window_set_default_size(GTK_WINDOW(window1), 700, 500);
     gtk_window_set_position(GTK_WINDOW(window1), GTK_WIN_POS_CENTER);
     g_signal_connect(window1, "destroy", G_CALLBACK(gtk_main_quit), NULL);

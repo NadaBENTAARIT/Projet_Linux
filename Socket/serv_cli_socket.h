@@ -14,7 +14,7 @@
 
 
 
-// ***defining NBMAX and pipes ***//
+// ***defining NBMAX and port***//
 #define NBMAX 7
 #define PORT 7000
 

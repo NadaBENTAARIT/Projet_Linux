@@ -1,13 +1,7 @@
 window1{
 
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size:80%;
     background-image: url("image.jpg");
 } 
 
-label{
-    margin-right: 20px;
-    margin-left:50px ;
-
-    color:brown;
-}

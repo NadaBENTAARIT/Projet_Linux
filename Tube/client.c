@@ -70,12 +70,25 @@ int main()
     /*** Sending  SIGUSR1 to server ***/
     int test = kill(reponse.pid_serveur, SIGUSR1);
 
+   
+
+    fprintf(fptr, "%s", " Vous etes le client ayant un pid =");
+    fprintf(fptr, "%d\n", reponse.pid_client);
+    fprintf(fptr, "%s", "\n");
+    fprintf(fptr, "%s", " Vous allez recevoir la réponse du serveur ayant un pid =");
+
+    fprintf(fptr, "%d\n", reponse.pid_serveur);
+    fprintf(fptr, "%s", "\n");
+
     /*** Treating response ***/
     printf("+=================================================+\n");
     printf("|from pid_server         |%d                   \n", reponse.pid_serveur);
     printf("|=================================================|\n");
     printf("|to pid_client           |%d                   \n", reponse.pid_client);
     printf("|=================================================\n");
+
+    fprintf(fptr, "%s\n", " Voici la liste des nombres générés pour vous");
+    fprintf(fptr, "%s", "\n");
     for (i = 0; i < n; i++)
     {
         // printf("|========================================|\n");
@@ -84,6 +97,7 @@ int main()
         fprintf(fptr, "%s", "\n");
     }
     printf("+=================================================+ \n");
+    fprintf(fptr, "%s\n", " Fin connexion,Merci pour votre essai");
 
     /* Close file to save file data */
     fclose(fptr);

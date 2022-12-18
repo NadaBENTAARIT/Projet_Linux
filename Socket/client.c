@@ -19,76 +19,86 @@ void main()
     if (client_sock < 0)
     {
         printf("unable to create socket");
-        
     }
-        printf("Client socket create succcessfully");
+    printf("Client socket create succcessfully");
 
     // Asking for connexion
     memset(&addr, '\n', sizeof(addr));
     addr.sin_family = AF_INET;
     addr.sin_port = htons(PORT);
     addr.sin_addr.s_addr = inet_addr("127.0.0.1");
-    ret=connect(client_sock,(struct sockaddr *)&addr, sizeof(addr));
+    ret = connect(client_sock, (struct sockaddr *)&addr, sizeof(addr));
 
-
-
-    if (ret< 0)
-	{
-		printf("Error in connection.\n");
-		exit(1);
-	}
-    else{
-    printf("\n Connect to server");
-
-    // Transfering data
-    int n = 1 + rand() % NBMAX;
-    question.pid_client = getpid(); // pid de client courant
-    question.n = n;
-    send(client_sock, &question, sizeof(question), 0);
-
-    // Receiving response
-    read(client_sock, &reponse, sizeof(reponse));
-    printf(" ena fl client noumrou serveur %d", reponse.pid_serveur);
-
-    // ************* file
-
-    FILE *fptr = NULL;
-
-    // Open file in w (write) mode.
-
-    fptr = fopen("Socket/data_file.txt", "w");
-
-    /* fopen() return NULL if last operation was unsuccessful */
-    if (fptr == NULL)
+    if (ret < 0)
     {
-        /* File not created hence exit */
-        printf("Unable to create file.\n");
-        exit(EXIT_FAILURE);
+        printf("Error in connection.\n");
+        exit(1);
     }
-
-    /* Success message */
-    printf(" Data File created and saved successfully. :) \n");
-
-    /*** Treating response ***/
-    printf("+=================================================+\n");
-    printf("|from pid_server         |%d                   \n", reponse.pid_serveur);
-    printf("|=================================================|\n");
-    printf("|to pid_client           |%d                   \n", question.pid_client);
-    printf("|=================================================\n");
-    for (i = 0; i < n; i++)
+    else
     {
-        // printf("|========================================|\n");
-        printf("|number  %d               |%d              \n", i + 1, reponse.tab[i]);
-        fprintf(fptr, "%d", reponse.tab[i]);
+        printf("\n Connect to server");
+
+        // Transfering data
+        int n = 1 + rand() % NBMAX;
+        question.pid_client = getpid(); // pid de client courant
+        question.n = n;
+        send(client_sock, &question, sizeof(question), 0);
+
+        // Receiving response
+        read(client_sock, &reponse, sizeof(reponse));
+        printf(" ena fl client noumrou serveur %d", reponse.pid_serveur);
+
+        // ************* file
+
+        FILE *fptr = NULL;
+
+        // Open file in w (write) mode.
+
+        fptr = fopen("Socket/data_file.txt", "w");
+
+        /* fopen() return NULL if last operation was unsuccessful */
+        if (fptr == NULL)
+        {
+            /* File not created hence exit */
+            printf("Unable to create file.\n");
+            exit(EXIT_FAILURE);
+        }
+
+        /* Success message */
+        printf(" Data File created and saved successfully. :) \n");
+
+        /*** Treating response ***/
+        printf("+=================================================+\n");
+        printf("|from pid_server         |%d                   \n", reponse.pid_serveur);
+        printf("|=================================================|\n");
+        printf("|to pid_client           |%d                   \n", question.pid_client);
+        printf("|=================================================\n");
+        fprintf(fptr, "%s", " Vous etes le client ayant un pid =");
+        fprintf(fptr, "%d\n", question.pid_client);
+        fprintf(fptr, "%s", "\n");
+        fprintf(fptr, "%s", " Vous allez recevoir la réponse du serveur ayant un pid =");
+
+        fprintf(fptr, "%d\n", reponse.pid_serveur);
         fprintf(fptr, "%s", "\n");
 
-        // putw(reponse.tab[i], fPtr);
-    }
-    printf("+=================================================+ \n");
-    /* Close file to save file data */
-    fclose(fptr);
+        fprintf(fptr, "%s\n", " Voici la liste des nombres générés pour vous");
+        fprintf(fptr, "%s", "\n");
+        for (i = 0; i < n; i++)
+        {
+            // printf("|========================================|\n");
+            printf("|number  %d               |%d              \n", i + 1, reponse.tab[i]);
+            fprintf(fptr, "%d", reponse.tab[i]);
+            fprintf(fptr, "%s", "\n");
 
-    // Closing  socket
-    close(client_sock);
+            // putw(reponse.tab[i], fPtr);
+        }
+        printf("+=================================================+ \n");
+        fprintf(fptr, "%s\n", " Fin connexion,Merci pour votre essai");
+
+        /* Close file to save file data */
+        fclose(fptr);
+
+        // Closing  socket
+        close(client_sock);
     }
 }

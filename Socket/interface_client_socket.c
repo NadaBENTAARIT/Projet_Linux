@@ -1,6 +1,5 @@
 #include <gtk/gtk.h>
 #include <stdlib.h>
-#include <string.h>
 void load_css(void)
 {
     GtkCssProvider *provider;
@@ -25,10 +24,9 @@ int main(int argc, char **argv)
 
     // Opening file to read response
     FILE *fPtr;
-
+    char line[50];
     char resultat[50] = "";
 
-    char line[50];
     int num;
     FILE *fptr;
     fptr = fopen("Socket/data_file.txt", "r");
@@ -36,22 +34,19 @@ int main(int argc, char **argv)
     if (fptr == NULL)
     {
         printf("Error! opening file");
+        strcat(resultat, "Error !! ");
         exit(1);
     }
+
     while (fgets(line, 50, fptr))
     {
-        // printf("%s",line);
+        printf("%s", line);
         strcat(resultat, line);
-
-        // strcat(resultat,separa);
     }
-
-    printf(" resultat %s", resultat);
 
     /* Close file to save file data */
     fclose(fptr);
     remove("Socket/data.txt");
-
 
     gtk_init(&argc, &argv);
     // gtk code comes here
@@ -75,11 +70,12 @@ int main(int argc, char **argv)
     // gtk_box_pack_start(GTK_BOX(box),button2,TRUE,TRUE,50);
     // gtk_fixed_put(GTK_FIXED(fixed), title, 250, 50);
 
-    title1 = gtk_label_new("Voici les nombres générés pour vous par mode Socket TCP");
+    title1 = gtk_label_new("____Vous etes bien connecté au serveur mode Socket TCP____");
     title2 = gtk_label_new(resultat);
 
-    gtk_fixed_put(GTK_FIXED(fixed), title1,10, 50);
-    gtk_fixed_put(GTK_FIXED(fixed), title2,130, 120);
+
+    gtk_fixed_put(GTK_FIXED(fixed), title1,3, 50);
+    gtk_fixed_put(GTK_FIXED(fixed), title2, 20, 120);
 
     gtk_window_set_resizable(GTK_WINDOW(window1), FALSE);
     gtk_window_set_title(GTK_WINDOW(window1), "Resultat_Socket");
